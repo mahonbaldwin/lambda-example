@@ -10,7 +10,7 @@ clj -e "(compile 'dynamo-example.core)"
 clj -Auberjar
 ```
 
-## Upload
+## Upload & Test
 Manually upload it by following these instructions.
 
 1. Create Lambda [here](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions).
