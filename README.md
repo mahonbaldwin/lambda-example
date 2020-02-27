@@ -24,14 +24,20 @@ Manually upload it by following these instructions.
     - Click "Attach policies".
     - Search "Dynamo".
     - Attach `AmazonDynamoDBFullAccess` (for test, you can also limit the scope).
+1. Create a DynamoDB.
+    - From [here](https://console.aws.amazon.com/dynamodb/home?region=us-east-1#create-table:) create a new table called "example-db" (or whatever you want)
+    - Uncheck "Use default settings"
+    - Select "On-demand"
+    - Click "Create".
 1. Click "Coonfigure Test" at the top of the Lambda's config page.
-    - Create a new test with the following body:
+    - Create a new test with the following body using the table you created above:
         ```
         {
+            "table": "example-db",
             "name": "hello"
         }
         ```
     - Save.
 1. Click "Test".
 
-It should run successfully,
+It should run successfully, with the metadata output. But if you look in the table there

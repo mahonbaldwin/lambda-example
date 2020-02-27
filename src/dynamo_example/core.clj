@@ -8,12 +8,12 @@
 
 (def client (aws/client {:api :dynamodb}))
 
-(defn save-stuff [name]
-  (println :saving-stuff)
+(defn save-stuff [table name]
+  (println :saving-stuff table)
   (aws/invoke client {:op :BatchWriteItem,
                       :request
                           {:RequestItems
-                           {"example-db"
+                           {table
                             [{"PutRequest"
                               {"Item"
                                {"name-id" {:S "82834"}
@@ -24,9 +24,9 @@
                                 "name" {:S (str name 2)}}}}]}}}))
 
 (defn -main [s]
-  (let [{:keys [name]} (keywordize-keys (into {} s))]
-    (save-stuff name)
+  (let [{:keys [name table]} (keywordize-keys (into {} s))]
+    (save-stuff table name)
     (println :meta-data)
-    (clojure.pprint/pprint (meta (save-stuff name)))
+    (clojure.pprint/pprint (meta (save-stuff table name)))
     (stringify-keys {:finished 1})))
 
