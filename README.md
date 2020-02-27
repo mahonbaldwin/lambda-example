@@ -40,4 +40,4 @@ Manually upload it by following these instructions.
     - Save.
 1. Click "Test".
 
-It should run successfully, with the metadata output. But if you look in the table there
+It should run successfully, with the metadata output and describe table output. But if you look in the table there

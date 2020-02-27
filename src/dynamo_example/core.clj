@@ -23,10 +23,19 @@
                                {"name-id" {:S "182393"}
                                 "name" {:S (str name 2)}}}}]}}}))
 
+(defn describe [table]
+  (aws/invoke client {:op :DescribeTable
+                      :request {:TableName table}}))
+
 (defn -main [s]
   (let [{:keys [name table]} (keywordize-keys (into {} s))]
     (save-stuff table name)
+    (println)
     (println :meta-data)
     (clojure.pprint/pprint (meta (save-stuff table name)))
+
+    (println)
+    (println :table-description)
+    (clojure.pprint/pprint (describe table))
     (stringify-keys {:finished 1})))
 
