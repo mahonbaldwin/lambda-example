@@ -19,7 +19,12 @@ Manually upload it by following these instructions.
 1. On the function screen upload the file and change the handler (under "Function Code").
     - Upload the jar found in the `target` dir.
     - Handler should be `dynamo-example::main`.
-1. Click "Coonfigure Test" at the top.
+1. Update role's permissions to include DynamoDB.
+    - Under "Execution role" click `View the <name of role> on the IAM console.`
+    - Click "Attach policies".
+    - Search "Dynamo".
+    - Attach `AmazonDynamoDBFullAccess` (for test, you can also limit the scope).
+1. Click "Coonfigure Test" at the top of the Lambda's config page.
     - Create a new test with the following body:
         ```
         {
